@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# doc
+
+hour=0
+while [ $hour -ne 13 ]; do
+    min=1
+    echo "Hour: $hour"
+    while [ $min -ne 60 ]; do
+	echo $min
+	((min++))
+    done
+    ((hour++))
+done
