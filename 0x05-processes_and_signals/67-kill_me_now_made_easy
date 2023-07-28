@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# doc
-
-pkill -f --signal SIGTERM "7-highlander"
