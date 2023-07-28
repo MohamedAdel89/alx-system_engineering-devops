@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# doc
+
+pgrep bash | cut -d " " -f 2-2 | head -n 1

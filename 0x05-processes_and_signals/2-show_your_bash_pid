@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# doc
+# shellcheck disable=SC2009
+
+ps f -eo user,pid,pcpu,pmem,vsz,rss,tname,stat,start_time,bsdtime,command | grep bash
