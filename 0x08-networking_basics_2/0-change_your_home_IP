@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
-#changes the IP
 
-facebook='8.8.8.8 facebook.com'
-hosts=/etc/hosts
-cp $hosts ~/hosts.new
-sed -i s/127.0.0.1/127.0.0.2/ ~/hosts.new
-echo "$facebook" >> ~/hosts.new
-cp -f ~/hosts.new /etc/hosts
+# Backup the original hosts file
+sudo cp /etc/hosts /etc/hosts.bak
+
+# Update localhost and facebook.com IP addresses
+sudo sed -i 's/127\.0\.0\.1/127\.0\.0\.2/' /etc/hosts
+sudo sed -i 's/157\.240\.11\.35/8\.8\.8\.8/' /etc/hosts
+
+# Flush the DNS cache to apply the changes
+sudo systemd-resolve --flush-caches
+
+echo "Changes applied successfully."
+
