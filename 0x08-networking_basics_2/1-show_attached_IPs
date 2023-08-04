@@ -1,5 +1,7 @@
 #!/bin/bash
 
-# Get the IPv4 addresses using the ip command
-ipv4_addresses=$(ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+# Get the IPv4 addresses using the ifconfig command
+ipv4_addresses=$(ip -4 addr | grep -oP 'inet (addr:)?\K\d+(\.\d+){3}' | grep -v '127.0.0.1')
 
+# Print each IPv4 address
+echo "$ipv4_addresses"
