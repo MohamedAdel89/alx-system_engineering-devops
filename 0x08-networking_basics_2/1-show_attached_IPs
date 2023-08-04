@@ -1,3 +1,5 @@
-#!/usr/bin/env bash
-#shows attached IPS
-ip a | grep "scope" | grep -Po '(?<=inet )[\d.]+'
+#!/bin/bash
+
+# Get the IPv4 addresses using the ip command
+ipv4_addresses=$(ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+
