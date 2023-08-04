@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 # Backup the original hosts file
-sudo cp /etc/hosts /etc/hosts.bak
+cp /etc/hosts /etc/hosts.bak
 
 # Update localhost and facebook.com IP addresses
-sudo sed -i 's/127\.0\.0\.1/127\.0\.0\.2/' /etc/hosts
-sudo sed -i 's/157\.240\.11\.35/8\.8\.8\.8/' /etc/hosts
+sed -i 's/127\.0\.0\.1/127\.0\.0\.2/' /etc/hosts
+sed -i 's/157\.240\.11\.35/8\.8\.8\.8/' /etc/hosts
 
 # Flush the DNS cache to apply the changes
-sudo systemd-resolve --flush-caches
+systemd-resolve --flush-caches
 
 echo "Changes applied successfully."
 
