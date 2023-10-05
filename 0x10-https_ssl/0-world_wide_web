@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2086
-# display information about subdomains.
-if [ $# -eq 1 ]
-then
-	sub_domains='www lb-01 web-01 web-02'
+# Display information about the records
+
+get_string () {
+    str=$(dig $1 | grep -A1 "ANSWER SECTION:" | tail -n 1)
+}
+
+if [ $# -eq 1 ]; then
+    list="www lb-01 web-01 web-02"
+    for subdomain in $list; do
+	get_string "$subdomain.$1"
+	echo "$str $subdomain" | awk '{ print "The subdomain " $6 " is a " $4 " record and points to " $5 }'
+    done
 else
-	sub_domains="$2"
+    get_string "$2.$1"
+    echo "$str $2" | awk '{ print "The subdomain " $6 " is a " $4 " record and points to " $5 }'
 fi
-for sub in $sub_domains
-do
-	echo -n "The subdomain $sub"
-	dig "$sub.$1" | awk 'NR == 14 {printf " is a %s record and points to %s\n", $4, $5}'
-done
