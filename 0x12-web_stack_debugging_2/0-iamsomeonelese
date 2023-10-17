@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# whoami as another user
+
+chsh -s /bin/bash "$1"
+su -c whoami "$1"
